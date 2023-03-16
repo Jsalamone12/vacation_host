@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties - Vacation Rentals</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/home">Vacation Rentals</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/properties">Properties</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bookings">Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/reviews">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/add_property">List Your Property</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/sign_out">Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <h1>Properties</h1>
+        <p>Welcome {{session.first_name}}, choose from our selection of high-quality vacation rentals.</p>
+    </div>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{{ url_for('static', filename='image/vacation_home.jpg') }}" class="card-img-top" alt="Property Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Luxury Villa</h5>
+                        <p class="card-text">This luxurious villa boasts breathtaking ocean views and all the amenities you need for a relaxing vacation.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-sm btn-outline-secondary">View Details</a>
+                                <a href="#" class="btn btn-sm btn-outline-secondary">Book Now</a>
+                            </div>
+                            <small class="text-muted">$250/night</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% for property in properties %}
+            <div class="card-body">
+                <h5 class="card-title">{{property.title}}</h5>
+                <p class="card-text">{{property.description}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-sm btn-outline-secondary">View Details</a>
+                        <a href="#" class="btn btn-sm btn-outline-secondary">Book Now</a>
+                    </div>
+                    <small class="text-muted">{{property.price_per_night}}</small>
+                </div>
+            </div>
+                
+                {%  if session['uid'] == property.user.id %}
+                {% endif %}
+        {% endfor %}

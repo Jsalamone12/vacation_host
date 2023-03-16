@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Property</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Add Property</h1>
+        <form action="/create_property" method="POST">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" name="title" placeholder="Enter property title" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" name="description" placeholder="Enter property description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" name="location" placeholder="Enter property location" required>
+            </div>
+            <div class="form-group">
+                <label for="price_per_night">Price per Night</label>
+                <input type="number" class="form-control" name="price_per_night" placeholder="Enter price per night" required>
+            </div>
+            <div class="form-group">
+                <label for="number_of_bedrooms">Number of Bedrooms</label>
+                <input type="number" class="form-control" name="number_of_bedrooms" placeholder="Enter number of bedrooms" required>
+            </div>
+            <div class="form-group">
+                <label for="number_of_bathrooms">Number of Bathrooms</label>
+                <input type="number" class="form-control" name="number_of_bathrooms" placeholder="Enter number of bathrooms" required>
+            </div>
+            <div class="form-group">
+                <label for="maximum_occupancy">Maximum Occupancy</label>
+                <input type="number" class="form-control" name="maximum_occupancy" min="1" placeholder="Enter maximum occupancy" required >
+            </div>
+            <div class="form-group">
+                <label for="amenities">Amenities:</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="wifi" value="wifi" id="wifi">
+                  <label class="form-check-label" for="wifi">
+                    Wi-Fi
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="pool" value="pool" id="pool">
+                  <label class="form-check-label" for="pool">
+                    Pool
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="gym" value="gym" id="gym">
+                  <label class="form-check-label" for="gym">
+                    Gym
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="parking" value="parking" id="parking">
+                  <label class="form-check-label" for="parking">
+                    Parking
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="kitchen" value="kitchen" id="kitchen">
+                  <label class="form-check-label" for="kitchen">
+                    Kitchen
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="images">Property images</label>
+                <input type="file" class="form-control-file" id="images" name="property_image" multiple>
+              </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="user_id" value="{{session.uid}}">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Property</button>
+        </form>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
